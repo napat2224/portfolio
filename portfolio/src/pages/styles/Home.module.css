@@ -1,5 +1,5 @@
 *{
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
 }
 .root{
     display: flex;
@@ -22,7 +22,6 @@
 }
 .cards{
     flex: 5;
-    /* background-color: aquamarine; */
     justify-content: center;
     align-items: center;
     display: flex;
@@ -43,17 +42,14 @@
 .cards :first-child:hover{
     opacity: 80%;
     transform: translateX(-1rem);
-    transform: scale(1.05);
 }
 .cards :last-child:hover{
     opacity: 80%;
     transform: translateX(1rem);
-    transform: scale(1.05);
 }
+
 .circle_pane{
     flex: 1;
-    
-    /* background-color: blueviolet; */
     width: 100%;
     height: 2rem;
     display: flex;
@@ -75,7 +71,7 @@ circle{
     overflow: hidden;
     text-align: center;
     align-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.6s ease;
 }
 .circle_pane :not(:nth-child(2)){
     opacity:60%;
@@ -84,21 +80,24 @@ circle{
     text-align: center;
     align-content: center;
 }
-.circle_pane :first-child:hover{
+.circle_pane :not(:nth-child(2)):hover{
     opacity: 80%;
-    transform: translateX(-1rem);
     transform: scale(1.05);
     color: beige;
-}
-.circle_pane :last-child:hover{
-    opacity: 80%;
-    transform: translateX(1rem);
-    transform: scale(1.05);
-    color: beige;
+    max-width: 40px;
+    border-radius: 20px;
 }
 .circle_pane :nth-child(2):hover{
     border-radius: 20px;
     max-width: 65px;
     color: white;
-    
+}
+
+.disappear {
+    flex: 5;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    opacity: 0;
 }

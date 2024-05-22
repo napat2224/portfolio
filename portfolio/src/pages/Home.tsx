@@ -6,8 +6,11 @@ import Card from "../components/Card";
 
 export default function Home() {
   const [currentCard, setCurrentCard] = useState(1);
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleCardClick = (cardNumber: number) => {
+    setIsVisible(false);
+    setTimeout(() => setIsVisible(true), 300);
     console.log(`Clicked on card ${cardNumber}`);
     setCurrentCard(cardNumber);
   };
@@ -72,7 +75,9 @@ export default function Home() {
   return (
     <div className={style.root} onWheel={handleScroll}>
       <div className={style.container}>
-        <div className={style.cards}>{showCards(currentCard)}</div>
+        <div className={isVisible ? style.cards : style.disappear}>
+          {showCards(currentCard)}
+        </div>
         <div className={style.circle_pane}>
           <circle
             className={style.circle}

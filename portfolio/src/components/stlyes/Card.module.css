@@ -1,5 +1,5 @@
 .container{
-    /* background-color: lightblue; */
+
     width: 270px;
     height: 50vh;
     display: inline-block;
@@ -11,6 +11,5 @@
     backdrop-filter: blur(2.8px);
     -webkit-backdrop-filter: blur(2.8px);
     border: 1px solid rgba(255, 255, 255, 0.72);
-
     text-align: center;
 }
