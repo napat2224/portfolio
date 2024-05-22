@@ -11,7 +11,6 @@ export default function Home() {
   const handleCardClick = (cardNumber: number) => {
     setIsVisible(false);
     setTimeout(() => setIsVisible(true), 300);
-    console.log(`Clicked on card ${cardNumber}`);
     setCurrentCard(cardNumber);
   };
 
@@ -31,12 +30,12 @@ export default function Home() {
 
   const handleScroll = (event: React.WheelEvent<HTMLDivElement>) => {
     if (event.deltaY > 0) {
-      // Scrolling down
-      setCurrentCard((prevCard) => Math.min(prevCard + 1, cards.length - 1)); // Assuming 11 is the total number of cards
+      setCurrentCard((prevCard) => Math.min(prevCard + 1, cards.length - 1));
     } else {
-      // Scrolling up
       setCurrentCard((prevCard) => Math.max(prevCard - 1, 0));
     }
+    setIsVisible(false);
+    setTimeout(() => setIsVisible(true), 300);
   };
 
   const showCards = (currentCard: number) => {
@@ -88,7 +87,11 @@ export default function Home() {
           <circle className={style.circle}>details</circle>
           <circle
             className={style.circle}
-            onClick={() => setCurrentCard(currentCard + 1)}
+            onClick={() => {
+              setCurrentCard(currentCard + 1);
+              setIsVisible(false);
+              setTimeout(() => setIsVisible(true), 300);
+            }}
           >
             {"->"}
           </circle>
