@@ -12,16 +12,6 @@ export default function Home() {
     setCurrentCard(cardNumber);
   };
 
-  // const handleScroll = (event:scroll) => {
-  //   if (event.deltaY > 0) {
-  //     // Scrolling down
-  //     setCurrentCard((prevCard) => Math.min(prevCard + 1, 11)); // Assuming 11 is the total number of cards
-  //   } else {
-  //     // Scrolling up
-  //     setCurrentCard((prevCard) => Math.max(prevCard - 1, 1));
-  //   }
-  // };
-
   const cards = [
     <Card onClick={() => handleCardClick(0)}>1</Card>,
     <Card onClick={() => handleCardClick(1)}>2</Card>,
@@ -35,6 +25,16 @@ export default function Home() {
     <Card onClick={() => handleCardClick(9)}>10</Card>,
     <Card onClick={() => handleCardClick(10)}>11</Card>,
   ];
+
+  const handleScroll = (event: React.WheelEvent<HTMLDivElement>) => {
+    if (event.deltaY > 0) {
+      // Scrolling down
+      setCurrentCard((prevCard) => Math.min(prevCard + 1, cards.length - 1)); // Assuming 11 is the total number of cards
+    } else {
+      // Scrolling up
+      setCurrentCard((prevCard) => Math.max(prevCard - 1, 0));
+    }
+  };
 
   const showCards = (currentCard: number) => {
     if (currentCard < 0) {
@@ -70,19 +70,23 @@ export default function Home() {
   };
 
   return (
-    <div className={style.root}>
+    <div className={style.root} onWheel={handleScroll}>
       <div className={style.container}>
         <div className={style.cards}>{showCards(currentCard)}</div>
         <div className={style.circle_pane}>
           <circle
             className={style.circle}
             onClick={() => setCurrentCard(currentCard - 1)}
-          ></circle>
-          <circle className={style.circle}></circle>
+          >
+            {"<-"}
+          </circle>
+          <circle className={style.circle}>details</circle>
           <circle
             className={style.circle}
             onClick={() => setCurrentCard(currentCard + 1)}
-          ></circle>
+          >
+            {"->"}
+          </circle>
         </div>
       </div>
     </div>

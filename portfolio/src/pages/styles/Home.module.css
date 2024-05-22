@@ -1,4 +1,6 @@
-
+*{
+    transition: all 0.3s ease;
+}
 .root{
     display: flex;
     justify-content: center;
@@ -69,17 +71,34 @@ circle{
 }
 .circle_pane :nth-child(2){
     transform: scale(1.2);
+    color: brown;
+    overflow: hidden;
+    text-align: center;
+    align-content: center;
+    transition: all 0.3s ease;
 }
 .circle_pane :not(:nth-child(2)){
     opacity:60%;
+    color: brown;
+    overflow: hidden;
+    text-align: center;
+    align-content: center;
 }
 .circle_pane :first-child:hover{
     opacity: 80%;
     transform: translateX(-1rem);
     transform: scale(1.05);
+    color: beige;
 }
 .circle_pane :last-child:hover{
     opacity: 80%;
     transform: translateX(1rem);
     transform: scale(1.05);
+    color: beige;
+}
+.circle_pane :nth-child(2):hover{
+    border-radius: 20px;
+    max-width: 65px;
+    color: white;
+    
 }
