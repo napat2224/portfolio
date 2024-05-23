@@ -26,10 +26,10 @@ export default function Card(props: Props) {
       <img className={style.image} src={card.img}></img>
       <div className={style.textBox}>
         <div className={style.lang}>{renderSvgs(card.lang)}</div>
-        <div className={style.description}></div>
-        <Link to="/home" className={style.link}>
+        <div className={style.description}>{card.text}</div>
+        {/* <Link to="/home" className={style.link}>
           More Detials
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

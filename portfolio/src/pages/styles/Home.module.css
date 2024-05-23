@@ -45,6 +45,13 @@
     transform: translateX(1rem);
 }
 
+.teach{
+    text-align: center;
+    font-size: 1.2rem;
+    color: brown;
+    opacity: 70%;
+}
+
 .circle_pane{
     flex: 1;
     width: 100%;

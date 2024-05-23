@@ -1,5 +1,5 @@
 .container{
-    width: 270px;
+    width: 300px;
     min-width: 270px;
     height: 50vh;
     opacity: 60%;
@@ -49,9 +49,14 @@
     border: 1px solid rgba(121, 39, 10, 0.3);
     border: 30px;
     pointer-events: none;
+    overflow-wrap: normal;
+    display: flex;
+    flex-direction: column;
 }
 
 .lang{
+    max-height: fit-content;
+    margin-bottom: 0.9rem;
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.40);
     border-radius: 13px;
@@ -66,4 +71,17 @@
 .svg{
     width: 20px;
     margin: 0.2rem;
+}
+
+.description {
+    color:rgb(55, 55, 55);
+    /* background-color: aliceblue; */
+    font-size: 12px;
+    max-width: 200px;
+    /* min-height: 200px; */
+    max-height: 90px;
+    overflow-wrap: break-word;
+    text-align: left;
+    overflow: hidden;
+    align-self: center;
 }

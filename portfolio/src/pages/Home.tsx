@@ -8,8 +8,28 @@ import cardsData from "../components/cardsData";
 export default function Home() {
   const [currentCard, setCurrentCard] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isClickedCircle, setIsClickedCircle] = useState(false);
+
+  const showText = () => {
+    if (!isClicked) {
+      return <div className={style.teach}>click</div>;
+    } else if (!isClickedCircle) {
+      return <div className={style.teach}>click circle</div>;
+    } else if (!isScrolled) {
+      return <div className={style.teach}>scroll</div>;
+    } else {
+      return (
+        <div className={style.teach}>
+          click on the card or red circle to see the details
+        </div>
+      );
+    }
+  };
 
   const handleCardClick = (cardNumber: number) => {
+    setIsClicked(true);
     setIsVisible(false);
     setTimeout(() => setIsVisible(true), 300);
     setCurrentCard(cardNumber);
@@ -30,6 +50,7 @@ export default function Home() {
     } else {
       setCurrentCard((prevCard) => Math.max(prevCard - 1, 0));
     }
+    setIsScrolled(true);
     setIsVisible(false);
     setTimeout(() => setIsVisible(true), 300);
   };
@@ -73,6 +94,7 @@ export default function Home() {
         <div className={isVisible ? style.cards : style.disappear}>
           {showCards(currentCard)}
         </div>
+        {showText()}
         <div className={style.circle_pane}>
           <circle
             className={style.circle}
@@ -80,6 +102,7 @@ export default function Home() {
               setCurrentCard(currentCard - 1);
               setIsVisible(false);
               setTimeout(() => setIsVisible(true), 300);
+              setIsClickedCircle(true);
             }}
           >
             {"<-"}
@@ -91,6 +114,7 @@ export default function Home() {
               setCurrentCard(currentCard + 1);
               setIsVisible(false);
               setTimeout(() => setIsVisible(true), 300);
+              setIsClickedCircle(true);
             }}
           >
             {"->"}
