@@ -3,7 +3,7 @@ import { useState } from "react";
 import style from "./styles/Home.module.css";
 
 import Card from "../components/Card";
-import Cardchild from "../components/CardChild";
+import cardsData from "../components/cardsData";
 
 export default function Home() {
   const [currentCard, setCurrentCard] = useState(0);
@@ -14,42 +14,15 @@ export default function Home() {
     setTimeout(() => setIsVisible(true), 300);
     setCurrentCard(cardNumber);
   };
+  const getCards = () => {
+    let cardList = [];
+    for (let i = 0; i < cardsData.length; i++) {
+      cardList.push(<Card onClick={() => handleCardClick(i)} cardNo={i} />);
+    }
+    return cardList;
+  };
 
-  const cards = [
-    <Card onClick={() => handleCardClick(0)}>
-      <Cardchild cardNo={0} />
-    </Card>,
-    <Card onClick={() => handleCardClick(1)}>
-      <Cardchild cardNo={1} />
-    </Card>,
-    <Card onClick={() => handleCardClick(2)}>
-      <Cardchild cardNo={2} />
-    </Card>,
-    <Card onClick={() => handleCardClick(3)}>
-      <Cardchild cardNo={3} />
-    </Card>,
-    <Card onClick={() => handleCardClick(4)}>
-      <Cardchild cardNo={4} />
-    </Card>,
-    <Card onClick={() => handleCardClick(5)}>
-      <Cardchild cardNo={5} />
-    </Card>,
-    <Card onClick={() => handleCardClick(6)}>
-      <Cardchild cardNo={6} />
-    </Card>,
-    <Card onClick={() => handleCardClick(7)}>
-      <Cardchild cardNo={7} />
-    </Card>,
-    <Card onClick={() => handleCardClick(8)}>
-      <Cardchild cardNo={8} />
-    </Card>,
-    <Card onClick={() => handleCardClick(9)}>
-      <Cardchild cardNo={9} />
-    </Card>,
-    <Card onClick={() => handleCardClick(10)}>
-      <Cardchild cardNo={10} />
-    </Card>,
-  ];
+  const cards = getCards();
 
   const handleScroll = (event: React.WheelEvent<HTMLDivElement>) => {
     if (event.deltaY > 0) {
