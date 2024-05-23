@@ -3,9 +3,10 @@ import { useState } from "react";
 import style from "./styles/Home.module.css";
 
 import Card from "../components/Card";
+import Cardchild from "../components/CardChild";
 
 export default function Home() {
-  const [currentCard, setCurrentCard] = useState(1);
+  const [currentCard, setCurrentCard] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
   const handleCardClick = (cardNumber: number) => {
@@ -15,17 +16,39 @@ export default function Home() {
   };
 
   const cards = [
-    <Card onClick={() => handleCardClick(0)}>1</Card>,
-    <Card onClick={() => handleCardClick(1)}>2</Card>,
-    <Card onClick={() => handleCardClick(2)}>3</Card>,
-    <Card onClick={() => handleCardClick(3)}>4</Card>,
-    <Card onClick={() => handleCardClick(4)}>5</Card>,
-    <Card onClick={() => handleCardClick(5)}>6</Card>,
-    <Card onClick={() => handleCardClick(6)}>7</Card>,
-    <Card onClick={() => handleCardClick(7)}>8</Card>,
-    <Card onClick={() => handleCardClick(8)}>9</Card>,
-    <Card onClick={() => handleCardClick(9)}>10</Card>,
-    <Card onClick={() => handleCardClick(10)}>11</Card>,
+    <Card onClick={() => handleCardClick(0)}>
+      <Cardchild cardNo={0} />
+    </Card>,
+    <Card onClick={() => handleCardClick(1)}>
+      <Cardchild cardNo={1} />
+    </Card>,
+    <Card onClick={() => handleCardClick(2)}>
+      <Cardchild cardNo={2} />
+    </Card>,
+    <Card onClick={() => handleCardClick(3)}>
+      <Cardchild cardNo={3} />
+    </Card>,
+    <Card onClick={() => handleCardClick(4)}>
+      <Cardchild cardNo={4} />
+    </Card>,
+    <Card onClick={() => handleCardClick(5)}>
+      <Cardchild cardNo={5} />
+    </Card>,
+    <Card onClick={() => handleCardClick(6)}>
+      <Cardchild cardNo={6} />
+    </Card>,
+    <Card onClick={() => handleCardClick(7)}>
+      <Cardchild cardNo={7} />
+    </Card>,
+    <Card onClick={() => handleCardClick(8)}>
+      <Cardchild cardNo={8} />
+    </Card>,
+    <Card onClick={() => handleCardClick(9)}>
+      <Cardchild cardNo={9} />
+    </Card>,
+    <Card onClick={() => handleCardClick(10)}>
+      <Cardchild cardNo={10} />
+    </Card>,
   ];
 
   const handleScroll = (event: React.WheelEvent<HTMLDivElement>) => {
@@ -80,7 +103,11 @@ export default function Home() {
         <div className={style.circle_pane}>
           <circle
             className={style.circle}
-            onClick={() => setCurrentCard(currentCard - 1)}
+            onClick={() => {
+              setCurrentCard(currentCard - 1);
+              setIsVisible(false);
+              setTimeout(() => setIsVisible(true), 300);
+            }}
           >
             {"<-"}
           </circle>
