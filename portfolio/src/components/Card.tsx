@@ -1,6 +1,4 @@
-import style from "./stlyes/Card.module.css";
-
-import { Link } from "react-router-dom";
+import style from "./styles/Card.module.css";
 
 import cardsData from "./cardsData";
 
@@ -27,9 +25,6 @@ export default function Card(props: Props) {
       <div className={style.textBox}>
         <div className={style.lang}>{renderSvgs(card.lang)}</div>
         <div className={style.description}>{card.text}</div>
-        {/* <Link to="/home" className={style.link}>
-          More Detials
-        </Link> */}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import style from "./styles/Home.module.css";
 
@@ -28,12 +29,19 @@ export default function Home() {
     }
   };
 
+  const navigate = useNavigate();
+
   const handleCardClick = (cardNumber: number) => {
-    setIsClicked(true);
-    setIsVisible(false);
-    setTimeout(() => setIsVisible(true), 300);
-    setCurrentCard(cardNumber);
+    if (cardNumber == currentCard) {
+      navigate("/" + cardsData[cardNumber].name);
+    } else {
+      setIsClicked(true);
+      setIsVisible(false);
+      setTimeout(() => setIsVisible(true), 300);
+      setCurrentCard(cardNumber);
+    }
   };
+
   const getCards = () => {
     let cardList = [];
     for (let i = 0; i < cardsData.length; i++) {
@@ -48,7 +56,7 @@ export default function Home() {
     if (event.deltaY > 0) {
       setCurrentCard((prevCard) => Math.min(prevCard + 1, cards.length - 1));
     } else {
-      setCurrentCard((prevCard) => Math.max(prevCard - 1, 0));
+      setCurrentCard((prevCard) => Math.max(prevCard - 1, 1));
     }
     setIsScrolled(true);
     setIsVisible(false);
@@ -56,15 +64,10 @@ export default function Home() {
   };
 
   const showCards = (currentCard: number) => {
-    if (currentCard < 0) {
-      setCurrentCard(0);
-    } else if (currentCard > cards.length - 1) {
-      setCurrentCard(cards.length - 1);
-    }
     if (currentCard == 0) {
       return (
         <>
-          {cards[0]}
+          {cards[cardsData.length - 1]}
           {cards[0]}
           {cards[1]}
         </>
@@ -74,7 +77,7 @@ export default function Home() {
         <>
           {cards[Math.max(0, currentCard - 1)]}
           {cards[currentCard]}
-          {cards[currentCard]}
+          {cards[0]}
         </>
       );
     } else {

@@ -3,7 +3,6 @@ import svgs from "../assets/svgs/svg.ts";
 import imgs from "../assets/image/img.ts";
 
 const cardsData = [
-
     {
       name: "This website",
       img: imgs.img1,
