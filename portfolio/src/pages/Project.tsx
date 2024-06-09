@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-import style from "./styles/Home.module.css";
+import style from "./styles/Project.module.css";
 
 import Card from "../components/Card";
 import cardsData from "../components/cardsData";
@@ -33,7 +33,7 @@ export default function Home() {
 
   const handleCardClick = (cardNumber: number) => {
     if (cardNumber == currentCard) {
-      navigate("/" + cardsData[cardNumber].name);
+      navigate("/card" + cardNumber);
     } else {
       setIsClicked(true);
       setIsVisible(false);
@@ -54,9 +54,13 @@ export default function Home() {
 
   const handleScroll = (event: React.WheelEvent<HTMLDivElement>) => {
     if (event.deltaY > 0) {
-      setCurrentCard((prevCard) => Math.min(prevCard + 1, cards.length - 1));
+      setCurrentCard((prevCard) =>
+        prevCard == cardsData.length - 1 ? 0 : prevCard + 1
+      );
     } else {
-      setCurrentCard((prevCard) => Math.max(prevCard - 1, 1));
+      setCurrentCard((prevCard) =>
+        prevCard == 0 ? cardsData.length - 1 : prevCard - 1
+      );
     }
     setIsScrolled(true);
     setIsVisible(false);
@@ -102,7 +106,9 @@ export default function Home() {
           <circle
             className={style.circle}
             onClick={() => {
-              setCurrentCard(currentCard - 1);
+              currentCard == 0
+                ? setCurrentCard(cardsData.length - 1)
+                : setCurrentCard(currentCard - 1);
               setIsVisible(false);
               setTimeout(() => setIsVisible(true), 300);
               setIsClickedCircle(true);
@@ -110,11 +116,15 @@ export default function Home() {
           >
             {"<-"}
           </circle>
-          <circle className={style.circle}>details</circle>
+          <Link to={"/card" + currentCard} className={style.circle}>
+            details
+          </Link>
           <circle
             className={style.circle}
             onClick={() => {
-              setCurrentCard(currentCard + 1);
+              currentCard == cardsData.length - 1
+                ? setCurrentCard(0)
+                : setCurrentCard(currentCard + 1);
               setIsVisible(false);
               setTimeout(() => setIsVisible(true), 300);
               setIsClickedCircle(true);

@@ -6,7 +6,7 @@ const cardsData = [
     {
       name: "This website",
       img: imgs.img1,
-      lang: [svgs.ReactLogo, svgs.TypeScriptLogo],
+      lang: [ svgs.HtmlLogo, svgs.CssLogo,svgs.ReactLogo, svgs.TypeScriptLogo],
       text: "Nostrud exercitation quis voluptate dolore aliquip ut cupidatat mollit.Cillum culpa sit ut nisi eiusmod amet ex esse mollit aliqua eu officia anim cillum. Eu esse duis officia occaecat commodo dolor nulla culpa eu adipisicing esse Lorem tempor deserunt. Laborum aute eiusmod ex excepteur do occaecat cupidatat non commodo. Velit tempor sint occaecat ad duis aliqua dolor non esse anim elit dolore. Exercitation dolore ut anim officia consequat elit. Consequat officia eiusmod quis incididunt in minim culpa."
     },
     {

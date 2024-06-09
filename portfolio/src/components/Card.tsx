@@ -12,7 +12,7 @@ export default function Card(props: Props) {
 
   const renderSvgs = (langs: string[]) => {
     let out = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < langs.length; i++) {
       out.push(<img key={i} className={style.svg} src={langs[i]} />);
     }
     return out;

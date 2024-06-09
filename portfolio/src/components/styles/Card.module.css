@@ -10,7 +10,6 @@
     backdrop-filter: blur(2.8px);
     -webkit-backdrop-filter: blur(2.8px);
     border: 1px solid rgba(255, 255, 255, 0.72);
-    /* text-align: center; */
 
     display: flex;
     flex-direction: column;
@@ -39,8 +38,8 @@
 .textBox{
     flex:4;
     padding: 0.5rem;
-    margin: 0.5rem;
-    justify-content: center;
+    margin: 1rem;
+    justify-content: flex-start;
     background: rgba(121, 39, 10, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -50,14 +49,14 @@
     border: 30px;
     pointer-events: none;
     overflow-wrap: normal;
+
     display: flex;
     flex-direction: column;
+    /* overflow: hidden; */
 }
 
 .lang{
-    max-height: fit-content;
-    margin-bottom: 0.9rem;
-    /* From https://css.glass */
+    height: fit-content;
     background: rgba(255, 255, 255, 0.40);
     border-radius: 13px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -66,6 +65,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .svg{
@@ -74,14 +74,11 @@
 }
 
 .description {
+    white-space: wrap;
+    flex: 1;
     color:rgb(55, 55, 55);
-    /* background-color: aliceblue; */
     font-size: 12px;
-    max-width: 200px;
-    /* min-height: 200px; */
-    max-height: 90px;
-    overflow-wrap: break-word;
+    max-width: 100%;
+
     text-align: left;
-    overflow: hidden;
-    align-self: center;
 }

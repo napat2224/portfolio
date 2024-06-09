@@ -7,7 +7,7 @@ export default function NotFound() {
       <div className={style.container}>
         <div className={style.text}>Page not found</div>
         <div className={style.links}>
-          <Link to="/home" className={style.link}>
+          <Link to="/intro" className={style.link}>
             Back to Home Page
           </Link>
         </div>

@@ -12,6 +12,7 @@
     margin: 0px;
     position: fixed;
 }
+
 .container{
     width: 70%;
     min-width:450px;
@@ -59,17 +60,18 @@
     justify-content: space-evenly;
     align-items: center;
 }
-circle{
+.circle{
+    text-decoration: none;
     display: inline;
     flex: 1;
-    background-color: brown;
-    max-width: 2rem;
-    height: 2rem;
+    background-color: rgb(172, 43, 65);
+    max-width: 2.2rem;
+    height: 2.2rem;
     border-radius: 100%;
 }
 .circle_pane :nth-child(2){
     transform: scale(1.2);
-    color: brown;
+    color: transparent;
     overflow: hidden;
     text-align: center;
     align-content: center;
@@ -77,7 +79,7 @@ circle{
 }
 .circle_pane :not(:nth-child(2)){
     opacity:60%;
-    color: brown;
+    color: transparent;
     overflow: hidden;
     text-align: center;
     align-content: center;

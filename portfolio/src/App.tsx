@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
+import Project from "./pages/Project";
 import NotFound from "./pages/NotFound";
+import Intro from "./pages/Intro";
 
 import cardsData from "./components/cardsData";
 
@@ -17,8 +18,10 @@ function App() {
   };
 
   function LazyCardLoader({ index }: { index: number }) {
-    const CardComponent = React.lazy(
-      () => import(`./pages/Cards/Card${index}`)
+    const CardComponent = React.lazy(() =>
+      import(`./pages/Cards/Card${index}`).catch(() => {
+        return { default: NotFound };
+      })
     );
     return (
       <Suspense fallback={<div>Loading...</div>}>
@@ -30,8 +33,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
-        <Route path="/home" element={<Home />} />
+        <Route index element={<Intro />} />
+        <Route path="/intro" element={<Intro />} />
+        <Route path="/project" element={<Project />} />
         {getCardsRoute()}
         <Route path="/*" element={<NotFound />} />
       </Routes>
