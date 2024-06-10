@@ -9,7 +9,7 @@ import cardsData from "./components/cardsData";
 
 function App() {
   const getCardsRoute = () => {
-    return cardsData.map((card, index) => (
+    return cardsData.map((_, index) => (
       <Route
         path={`/card${index}`}
         element={<LazyCardLoader index={index} />}

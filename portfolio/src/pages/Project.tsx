@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import style from "./styles/Project.module.css";
@@ -7,32 +7,65 @@ import Card from "../components/Card";
 import cardsData from "../components/cardsData";
 
 export default function Home() {
-  const [currentCard, setCurrentCard] = useState(0);
+  const [currentCard, setCurrentCard] = useState(
+    localStorage.getItem("currentCard")
+      ? parseInt(localStorage.getItem("currentCard") || "0")
+      : 0
+  );
   const [isVisible, setIsVisible] = useState(true);
-  const [isClicked, setIsClicked] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isClickedCircle, setIsClickedCircle] = useState(false);
+  const [isClicked, setIsClicked] = useState(
+    localStorage.getItem("isClicked") === "true" ? true : false
+  );
+  const [isScrolled, setIsScrolled] = useState(
+    localStorage.getItem("isScrolled") === "true" ? true : false
+  );
+  const [isClickedCircle, setIsClickedCircle] = useState(
+    localStorage.getItem("isClickedCircle") === "true" ? true : false
+  );
+  const [isFinish, setIsFinish] = useState(
+    localStorage.getItem("isFinish") === "true" ? true : false
+  );
 
   const showText = () => {
     if (!isClicked) {
-      return <div className={style.teach}>click</div>;
-    } else if (!isClickedCircle) {
-      return <div className={style.teach}>click circle</div>;
-    } else if (!isScrolled) {
-      return <div className={style.teach}>scroll</div>;
-    } else {
       return (
         <div className={style.teach}>
-          click on the card or red circle to see the details
+          click on the side cards view next card
         </div>
       );
+    } else if (!isClickedCircle) {
+      return (
+        <div className={style.teach}>
+          you can do that by clicking the side circle too
+        </div>
+      );
+    } else if (!isScrolled) {
+      return <div className={style.teach}>try scroll</div>;
+    } else if (!isFinish) {
+      return (
+        <div className={style.teach}>
+          click on the card or middle circle to see the details
+        </div>
+      );
+    } else {
+      return <div>enjoy!</div>;
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("isClicked", isClicked.toString());
+    localStorage.setItem("isScrolled", isScrolled.toString());
+    localStorage.setItem("isClickedCircle", isClickedCircle.toString());
+    localStorage.setItem("IsFinish", isFinish.toString());
+    localStorage.setItem("currentCard", currentCard.toString());
+  }, [isClicked, isScrolled, isClickedCircle, isFinish, currentCard]);
 
   const navigate = useNavigate();
 
   const handleCardClick = (cardNumber: number) => {
     if (cardNumber == currentCard) {
+      setIsFinish(true);
+      console.log(isFinish);
       navigate("/card" + cardNumber);
     } else {
       setIsClicked(true);
@@ -116,7 +149,14 @@ export default function Home() {
           >
             {"<-"}
           </circle>
-          <Link to={"/card" + currentCard} className={style.circle}>
+          <Link
+            onClick={() => {
+              setIsFinish(true);
+              console.log(isFinish);
+            }}
+            to={"/card" + currentCard}
+            className={style.circle}
+          >
             details
           </Link>
           <circle
