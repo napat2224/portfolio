@@ -1,0 +1,88 @@
+.container{
+    width: 300px;
+    min-width: 270px;
+    height: 50vh;
+    opacity: 60%;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.13);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.8px);
+    -webkit-backdrop-filter: blur(2.8px);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem;
+}
+
+.name {
+    font-size: 26px;
+    color: black;
+    flex:1;
+    align-self: center;
+    justify-self: center;
+    pointer-events: none;
+}
+
+.image{
+    max-width: 210px;
+    height: auto ;
+    max-height: 30%;
+    margin: 1rem ;
+    border-radius: 13px;
+    align-self: center;
+    flex: 2;
+}
+
+.textBox{
+    flex:4;
+    padding: 0.5rem;
+    max-height: 20vh;
+    margin: 1rem;
+    
+    background: rgba(121, 39, 10, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(121, 39, 10, 0.3);
+    border: 30px;
+    pointer-events: none;
+    overflow-wrap: normal;
+
+    display: flex;
+    flex-direction: column;
+    overflow:hidden;
+    justify-content: flex-start;
+
+}
+
+.lang{
+    height: fit-content;
+    background: rgba(255, 255, 255, 0.40);
+    border-radius: 13px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.6px);
+    -webkit-backdrop-filter: blur(6.6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    
+    justify-content: center;
+    width: 100%;
+}
+
+.svg{
+    width: 20px;
+    margin: 0.2rem;
+}
+
+.description {
+    white-space: wrap;
+    color:rgb(55, 55, 55);
+    font-size: 14px;
+    max-width: 80%;
+    text-align: left;
+    /* background-color: aqua; */
+    margin-top: 0.5rem;
+}
