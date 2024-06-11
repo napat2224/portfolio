@@ -5,12 +5,14 @@ export default function Intro() {
   return (
     <div className={style.root}>
       <h1>HI i'm Napat</h1>
-      <p>you are in my portfolio website</p>
+      <p>You are in my portfolio website</p>
       <p>
-        I made this website to learn how to build a website useing react and
-        typescript
+        I made this website to learn how to build a website using React and
+        TypeScript. This website may have out of theme design to let me try new
+        things.
       </p>
-      <h1>** this website is under develop **</h1>
+      <h1>** This website is under development **</h1>
+      <p>Use a desktop device to get the full experience.</p>
       <div className={style.btn_container}>
         <a
           className={style.btn}
@@ -22,6 +24,9 @@ export default function Intro() {
         </a>
         <Link to="/project" className={style.btn}>
           Previous Projects
+        </Link>
+        <Link to="/profile" className={style.btn}>
+          Profile
         </Link>
       </div>
     </div>

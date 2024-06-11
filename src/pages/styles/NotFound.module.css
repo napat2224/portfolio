@@ -52,7 +52,8 @@
     border-radius: 20px;
     color: brown;
     display: inline-block;
-    max-height: 60px;
+    /* max-height: 60px; */
+    height: fit-content;
 }
 
 .link:hover{

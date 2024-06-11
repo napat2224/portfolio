@@ -8,6 +8,15 @@ import Card from "../components/Card";
 import cardsData from "../components/cardsData";
 
 export default function Home() {
+  // loading
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   const [currentCard, setCurrentCard] = useState(
     localStorage.getItem("currentCard")
       ? parseInt(localStorage.getItem("currentCard") || "0")
@@ -23,9 +32,9 @@ export default function Home() {
   const [isClickedCircle, setIsClickedCircle] = useState(
     localStorage.getItem("isClickedCircle") === "true" ? true : false
   );
-  const [isFinish, setIsFinish] = useState(
-    localStorage.getItem("isFinish") === "true" ? true : false
-  );
+  // const [isFinish, setIsFinish] = useState(
+  //   localStorage.getItem("isFinish") === "true" ? true : false
+  // );
 
   const showText = () => {
     if (!isClicked) {
@@ -42,14 +51,20 @@ export default function Home() {
       );
     } else if (!isScrolled) {
       return <div className={style.teach}>try scroll</div>;
-    } else if (!isFinish) {
+      // } else if (!isFinish) {
+      //   return (
+      //     <div className={style.teach}>
+      //       click on the card or middle circle to see the details
+      //     </div>
+      //   );
+    } else {
       return (
         <div className={style.teach}>
           click on the card or middle circle to see the details
+          <br />
+          but most of them doesn't have any detail yet
         </div>
       );
-    } else {
-      return <div>enjoy!</div>;
     }
   };
 
@@ -57,17 +72,18 @@ export default function Home() {
     localStorage.setItem("isClicked", isClicked.toString());
     localStorage.setItem("isScrolled", isScrolled.toString());
     localStorage.setItem("isClickedCircle", isClickedCircle.toString());
-    localStorage.setItem("IsFinish", isFinish.toString());
+    // localStorage.setItem("IsFinish", isFinish.toString());
     localStorage.setItem("currentCard", currentCard.toString());
-  }, [isClicked, isScrolled, isClickedCircle, isFinish, currentCard]);
+    // }, [isClicked, isScrolled, isClickedCircle, isFinish, currentCard]);
+  }, [isClicked, isScrolled, isClickedCircle, currentCard]);
 
   const navigate = useNavigate();
 
   const handleCardClick = (cardNumber: number) => {
     if (cardNumber == currentCard) {
-      setIsFinish(true);
-      console.log(isFinish);
-      navigate("/card" + cardNumber);
+      // setIsFinish(true);
+      // console.log(isFinish);
+      navigate("/Card" + cardNumber);
     } else {
       setIsClicked(true);
       setIsVisible(false);
@@ -130,51 +146,63 @@ export default function Home() {
   };
 
   return (
-    <div className={style.root} onWheel={handleScroll}>
-      <div className={style.container}>
-        <div className={isVisible ? style.cards : style.disappear}>
-          {showCards(currentCard)}
+    <div className={style.root}>
+      {isLoading ? (
+        <div className={style.loader}>
+          <div>L</div>
+          <div>O</div>
+          <div>A</div>
+          <div>D</div>
+          <div>I</div>
+          <div>N</div>
+          <div>G</div>
         </div>
-        {showText()}
-        <div className={style.circle_pane}>
-          <circle
-            className={style.circle}
-            onClick={() => {
-              currentCard == 0
-                ? setCurrentCard(cardsData.length - 1)
-                : setCurrentCard(currentCard - 1);
-              setIsVisible(false);
-              setTimeout(() => setIsVisible(true), 300);
-              setIsClickedCircle(true);
-            }}
-          >
-            {"<-"}
-          </circle>
-          <Link
-            onClick={() => {
-              setIsFinish(true);
-              console.log(isFinish);
-            }}
-            to={"/card" + currentCard}
-            className={style.circle}
-          >
-            details
-          </Link>
-          <circle
-            className={style.circle}
-            onClick={() => {
-              currentCard == cardsData.length - 1
-                ? setCurrentCard(0)
-                : setCurrentCard(currentCard + 1);
-              setIsVisible(false);
-              setTimeout(() => setIsVisible(true), 300);
-              setIsClickedCircle(true);
-            }}
-          >
-            {"->"}
-          </circle>
+      ) : (
+        <div className={style.container} onWheel={handleScroll}>
+          <div className={isVisible ? style.cards : style.disappear}>
+            {showCards(currentCard)}
+          </div>
+          {showText()}
+          <div className={style.circle_pane}>
+            <circle
+              className={style.circle}
+              onClick={() => {
+                currentCard == 0
+                  ? setCurrentCard(cardsData.length - 1)
+                  : setCurrentCard(currentCard - 1);
+                setIsVisible(false);
+                setTimeout(() => setIsVisible(true), 300);
+                setIsClickedCircle(true);
+              }}
+            >
+              {"<-"}
+            </circle>
+            <Link
+              // onClick={() => {
+              //   setIsFinish(true);
+              //   console.log(isFinish);
+              // }}
+              to={"/card" + currentCard}
+              className={style.circle}
+            >
+              details
+            </Link>
+            <circle
+              className={style.circle}
+              onClick={() => {
+                currentCard == cardsData.length - 1
+                  ? setCurrentCard(0)
+                  : setCurrentCard(currentCard + 1);
+                setIsVisible(false);
+                setTimeout(() => setIsVisible(true), 300);
+                setIsClickedCircle(true);
+              }}
+            >
+              {"->"}
+            </circle>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
