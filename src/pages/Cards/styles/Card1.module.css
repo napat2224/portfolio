@@ -2,3 +2,7 @@
     color: black;
     font-size: xx-large;
 }
+
+img {
+    max-height: 200px;
+}

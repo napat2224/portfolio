@@ -6,11 +6,11 @@ export default function Card0() {
       <p className={style.head}>this website</p>
       <p>this website made by tyoescript and react</p>
       <a
-        href="https://github.com/napat2224"
+        href="https://github.com/napat2224/portfolio/tree/mime"
         target="_blank"
         rel="noopener noreferrer"
       >
-        github (current version is on branch "mime")
+        github for this project
       </a>
     </>
   );
