@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./styles/Card1.module.css";
 
 export default function Card1() {
